@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>心语台 · 客服共情工作台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+        </span>
+        <div class="brand-copy">
+          <strong>心语台</strong>
+          <span>客服共情工作台</span>
+        </div>
+      </div>
+      <nav class="view-tabs" aria-label="主视图">
+        <button type="button" class="view-tab active" data-view="workbench" aria-pressed="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="15" rx="2"></rect>
+            <path d="M8 21h8M12 17v4"></path>
+          </svg>
+          接待工作台
+        </button>
+        <button type="button" class="view-tab" data-view="dashboard" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+          </svg>
+          风险预警看板
+          <span class="risk-count" id="topRiskCount">7</span>
+        </button>
+      </nav>
+      <div class="topbar-meta">
+        <span class="demo-badge">模拟数据</span>
+        <span class="agent-status">
+          <span class="status-dot"></span>
+          客服：苏晴
+        </span>
+        <button type="button" class="icon-button" aria-label="通知" title="通知">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="view active" id="workbenchView">
+        <aside class="session-panel">
+          <div class="panel-heading">
+            <div>
+              <strong>会话列表</strong>
+              <span id="sessionTotal">3 个待接入</span>
+            </div>
+            <button type="button" class="icon-button" aria-label="更多" title="更多">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="5" r="1.5"></circle>
+                <circle cx="12" cy="12" r="1.5"></circle>
+                <circle cx="12" cy="19" r="1.5"></circle>
+              </svg>
+            </button>
+          </div>
+          <label class="search-box">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="search" id="sessionSearch" placeholder="搜索用户或问题" aria-label="搜索会话">
+          </label>
+          <div class="session-list" id="sessionList"></div>
+        </aside>
+
+        <section class="chat-panel">
+          <header class="chat-header">
+            <div class="user-line">
+              <span class="avatar avatar-lg" id="chatAvatar">林</span>
+              <div class="user-line-copy">
+                <strong id="chatName">林小满</strong>
+                <span id="chatMeta">会员 Lv3 · 等待响应 1分20秒</span>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <button type="button" class="icon-button" aria-label="快捷回复" title="快捷回复">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+              <button type="button" class="icon-button" aria-label="转接" title="转接会话">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6"></path>
+                </svg>
+              </button>
+              <button type="button" class="icon-button" aria-label="会话设置" title="会话设置">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 8v4l3 3"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="chat-scroll" id="chatMessages"></div>
+
+          <footer class="chat-input">
+            <div class="quick-replies">
+              <button type="button" class="quick-chip" data-quick="不好意思让您久等了，我马上为您核实。">久等致歉</button>
+              <button type="button" class="quick-chip" data-quick="您的诉求我已经收到，正在为您加急处理。">正在加急</button>
+              <button type="button" class="quick-chip" data-quick="已为您申请退款/补偿方案，请稍等确认。">方案确认</button>
+            </div>
+            <div class="input-row">
+              <textarea id="chatTextarea" rows="1" placeholder="输入回复，Enter 发送" aria-label="回复内容"></textarea>
+              <button type="button" class="icon-button" aria-label="选择表情" title="表情">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                  <path d="M9 9h.01M15 9h.01"></path>
+                </svg>
+              </button>
+              <button type="button" class="send-button" id="sendButton">
+                发送
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m22 2-7 20-4-9-9-4Z"></path>
+                  <path d="M22 2 11 13"></path>
+                </svg>
+              </button>
+            </div>
+          </footer>
+        </section>
+
+        <aside class="assist-panel" id="assistPanel">
+          <div class="assist-section">
+            <div class="section-title">
+              <span>用户全景</span>
+              <button type="button" class="text-button" id="viewProfileBtn">查看档案</button>
+            </div>
+            <div class="profile-summary">
+              <span class="avatar avatar-md" id="profileAvatar">林</span>
+              <div class="profile-copy">
+                <strong id="profileName">林小满</strong>
+                <span id="profileMeta">杭州 · 累计消费 ¥1,280</span>
+              </div>
+              <span class="risk-pill high" id="profileRisk">高风险</span>
+            </div>
+            <div class="tag-row" id="userTags"></div>
+            <div class="info-grid">
+              <div>
+                <span>近 30 天咨询</span>
+                <strong id="contactCount">2 次</strong>
+              </div>
+              <div>
+                <span>最近订单</span>
+                <strong id="recentOrder">08-16</strong>
+              </div>
+              <div>
+                <span>历史工单</span>
+                <strong id="ticketCount">1 单</strong>
+              </div>
+              <div>
+                <span>当前情绪</span>
+                <strong id="emotionShort">焦虑</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="assist-section">
+            <div class="section-title">
+              <span>服务轨迹</span>
+              <span class="muted">已还原 4 个节点</span>
+            </div>
+            <ol class="timeline" id="trajectoryList"></ol>
+          </div>
+
+          <div class="assist-section">
+            <div class="section-title">
+              <span>AI 分析</span>
+              <span class="ai-badge">Agent</span>
+            </div>
+            <div class="analysis-block">
+              <div class="analysis-label">用户意图</div>
+              <div class="intent-line">
+                <strong id="intentLabel">售后 · 过敏退款</strong>
+                <span id="intentConfidence">0.93</span>
+              </div>
+              <div class="meter"><i id="intentMeter" style="width:93%"></i></div>
+            </div>
+            <div class="analysis-block">
+              <div class="analysis-label">情绪判断</div>
+              <div class="emotion-line">
+                <strong id="emotionLabel">焦虑 / 不满</strong>
+                <span id="emotionScore">0.86</span>
+              </div>
+              <div class="meter warn"><i id="emotionMeter" style="width:86%"></i></div>
+              <p class="analysis-note" id="emotionNote">较入线上升 22%，语气急促</p>
+            </div>
+          </div>
+
+          <div class="assist-section reply-section">
+            <div class="section-title">
+              <span>回复建议</span>
+              <button type="button" class="text-button" id="regenerateBtn">重新生成</button>
+            </div>
+            <div class="reply-box" id="replyBox">
+              <p id="replyText"></p>
+              <div class="reply-foot">
+                <span>共情 + 事实 + 方案</span>
+                <button type="button" class="text-button" id="adoptBtn">采纳回复</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="assist-section">
+            <div class="section-title">
+              <span>风险提示</span>
+              <span class="risk-pill high" id="riskBadge">高</span>
+            </div>
+            <div class="risk-card" id="riskCard">
+              <div class="risk-title">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                  <path d="M12 9v4M12 17h.01"></path>
+                </svg>
+                <strong id="riskType">情绪升级 + 售后过敏</strong>
+              </div>
+              <ul id="riskReasons"></ul>
+              <div class="risk-actions">
+                <button type="button" class="primary-button" id="createTicketBtn">生成工单</button>
+                <button type="button" class="ghost-button" id="closeRiskBtn">标记闭环</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="view" id="dashboardView">
+        <div class="dashboard">
+          <div class="dashboard-head">
+            <div>
+              <h1>风险预警跟踪看板</h1>
+              <p id="dashboardDate">2026-08-19 今日服务风险总览</p>
+            </div>
+            <button type="button" class="ghost-button" id="openWorkbenchBtn">返回工作台</button>
+          </div>
+
+          <div class="kpi-grid">
+            <article class="kpi-card">
+              <span>今日预警</span>
+              <strong id="kpiToday">32</strong>
+              <small>较昨日 +6</small>
+            </article>
+            <article class="kpi-card warn">
+              <span>高风险待处理</span>
+              <strong id="kpiHigh">7</strong>
+              <small>需 2 小时内响应</small>
+            </article>
+            <article class="kpi-card">
+              <span>平均处理时长</span>
+              <strong id="kpiDuration">2.4h</strong>
+              <small>目标 ≤ 3h</small>
+            </article>
+            <article class="kpi-card good">
+              <span>风险闭环率</span>
+              <strong id="kpiClosed">91%</strong>
+              <small>本周 +3.2%</small>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="chart-panel">
+              <div class="section-title">
+                <span>近 7 日风险趋势</span>
+                <span class="muted">单位：预警数</span>
+              </div>
+              <div class="chart-wrap" id="riskChart"></div>
+            </section>
+
+            <section class="risk-list-panel">
+              <div class="section-title">
+                <span>预警列表</span>
+                <span class="muted" id="eventCount">共 8 条</span>
+              </div>
+              <div class="filter-row" id="riskFilters">
+                <button type="button" class="filter-chip active" data-filter="全部">全部</button>
+                <button type="button" class="filter-chip" data-filter="情绪升级">情绪升级</button>
+                <button type="button" class="filter-chip" data-filter="重复进线">重复进线</button>
+                <button type="button" class="filter-chip" data-filter="重复退款">重复退款</button>
+                <button type="button" class="filter-chip" data-filter="舆情投诉">舆情投诉</button>
+              </div>
+              <div class="risk-table" id="riskTable"></div>
+            </section>
+          </div>
+
+          <section class="risk-detail" id="riskDetail">
+            <div class="section-title">
+              <span>风险详情</span>
+              <span class="detail-actions">
+                <span class="muted" id="detailStatusText"></span>
+                <button type="button" class="ghost-button" id="closeDashboardRiskBtn">标记闭环</button>
+              </span>
+            </div>
+            <div class="detail-grid" id="riskDetailBody"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
